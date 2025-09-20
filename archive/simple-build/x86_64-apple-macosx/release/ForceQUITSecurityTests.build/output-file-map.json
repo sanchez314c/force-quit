@@ -1,0 +1,12 @@
+{
+  "": {
+    "dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurityTests.build/ForceQUITSecurityTests.d",
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurityTests.build/ForceQUITSecurityTests.o",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurityTests.build/master.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/Tests/ForceQUITSecurityTests/SecurityTests.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurityTests.build/SecurityTests.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurityTests.build/SecurityTests~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurityTests.build/SecurityTests.swiftdeps"
+  }
+}

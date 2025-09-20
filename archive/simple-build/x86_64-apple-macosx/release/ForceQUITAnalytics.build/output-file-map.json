@@ -1,0 +1,12 @@
+{
+  "": {
+    "dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITAnalytics.build/ForceQUITAnalytics.d",
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITAnalytics.build/ForceQUITAnalytics.o",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITAnalytics.build/master.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/Sources/ForceQUITAnalytics/AnalyticsManager.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITAnalytics.build/AnalyticsManager.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITAnalytics.build/AnalyticsManager~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITAnalytics.build/AnalyticsManager.swiftdeps"
+  }
+}

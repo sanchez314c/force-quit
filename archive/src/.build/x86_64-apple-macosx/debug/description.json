@@ -1,0 +1,389 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.ForceQUIT-x86_64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources",
+      "importPath" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/AnimationController.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Core/SafeRestartEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/ForceQUITUI.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/HealthRingsGrid.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Models/ProcessInfo.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/PerformanceOptimizer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/SystemStateManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Views/AnimatedTransitions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/main_complex.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "ForceQUIT",
+      "moduleOutputPath" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/Modules/ForceQUIT.swiftmodule",
+      "objects" : [
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimationController.swift.o",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SafeRestartEngine.swift.o",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ForceQUITUI.swift.o",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/HealthRingsGrid.swift.o",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ProcessInfo.swift.o",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/PerformanceOptimizer.swift.o",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SystemStateManager.swift.o",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimatedTransitions.swift.o",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main_complex.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-apple-macosx14.0",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j20",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "ForceQUIT_main",
+        "-swift-version",
+        "5",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "src"
+      ],
+      "outputFileMapPath" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimationController.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SafeRestartEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ForceQUITUI.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/HealthRingsGrid.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ProcessInfo.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/PerformanceOptimizer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SystemStateManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimatedTransitions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main_complex.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/Modules/ForceQUIT.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/AnimationController.swift",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Core/SafeRestartEngine.swift",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/ForceQUITUI.swift",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/HealthRingsGrid.swift",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Models/ProcessInfo.swift",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/PerformanceOptimizer.swift",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/SystemStateManager.swift",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Views/AnimatedTransitions.swift",
+        "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/main_complex.swift"
+      ],
+      "tempsPath" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "ForceQUIT" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ForceQUIT",
+      "-package-name",
+      "src",
+      "-incremental",
+      "-c",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/AnimationController.swift",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Core/SafeRestartEngine.swift",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/ForceQUITUI.swift",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/HealthRingsGrid.swift",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Models/ProcessInfo.swift",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/PerformanceOptimizer.swift",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/SystemStateManager.swift",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Views/AnimatedTransitions.swift",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/main_complex.swift",
+      "-I",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/Modules",
+      "-target",
+      "x86_64-apple-macosx14.0",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j20",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "ForceQUIT_main",
+      "-swift-version",
+      "5",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "src",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "ForceQUIT" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "writeCommands" : {
+    "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT-entitlement.plist" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<entitlement-plist>"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<com.apple.security.get-task-allow>"
+        }
+      ],
+      "outputFilePath" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT-entitlement.plist"
+    },
+    "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/AnimationController.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Core/SafeRestartEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/ForceQUITUI.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/HealthRingsGrid.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Models/ProcessInfo.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/PerformanceOptimizer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/SystemStateManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Views/AnimatedTransitions.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/main_complex.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources"
+    },
+    "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimatedTransitions.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimationController.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ForceQUITUI.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/HealthRingsGrid.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/PerformanceOptimizer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ProcessInfo.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SafeRestartEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SystemStateManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main_complex.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.product/Objects.LinkFileList"
+    },
+    "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+dist/ForceQUIT.app

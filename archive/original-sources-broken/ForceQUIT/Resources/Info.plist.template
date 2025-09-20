@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Application Identity -->
+	<key>CFBundleIdentifier</key>
+	<string>com.forcequit.macos</string>
+	
+	<key>CFBundleName</key>
+	<string>ForceQUIT</string>
+	
+	<key>CFBundleDisplayName</key>
+	<string>ForceQUIT</string>
+	
+	<key>CFBundleVersion</key>
+	<string>1.0.0</string>
+	
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	
+	<!-- Deployment Target -->
+	<key>LSMinimumSystemVersion</key>
+	<string>12.0</string>
+	
+	<!-- Application Configuration -->
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	
+	<key>CFBundleExecutable</key>
+	<string>ForceQUIT</string>
+	
+	<key>CFBundleSignature</key>
+	<string>FQIT</string>
+	
+	<!-- UI Configuration for Sleek Design -->
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	
+	<key>NSSupportsAutomaticGraphicsSwitching</key>
+	<true/>
+	
+	<key>NSRequiresAquaSystemAppearance</key>
+	<false/>
+	
+	<!-- Menu Bar Integration -->
+	<key>LSUIElement</key>
+	<false/>
+	
+	<key>LSBackgroundOnly</key>
+	<false/>
+	
+	<!-- Privacy Permissions for Process Monitoring -->
+	<key>NSSystemAdministrationUsageDescription</key>
+	<string>ForceQUIT needs administrator access to force quit unresponsive applications and manage system processes safely.</string>
+	
+	<key>NSAppleEventsUsageDescription</key>
+	<string>ForceQUIT needs to send Apple Events to applications for safe restart functionality and graceful termination.</string>
+	
+	<key>NSProcessInfoUsageDescription</key>
+	<string>ForceQUIT monitors running processes to provide an elegant interface for force quitting unresponsive applications.</string>
+	
+	<!-- Security and Sandboxing -->
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+	
+	<key>com.apple.security.cs.allow-jit</key>
+	<false/>
+	
+	<key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+	<false/>
+	
+	<key>com.apple.security.cs.disable-executable-page-protection</key>
+	<false/>
+	
+	<!-- Network Access (if needed for updates) -->
+	<key>com.apple.security.network.client</key>
+	<true/>
+	
+	<!-- File Access for Process Information -->
+	<key>com.apple.security.files.user-selected.read-only</key>
+	<true/>
+	
+	<!-- Process Management Entitlements -->
+	<key>com.apple.security.automation.apple-events</key>
+	<true/>
+	
+	<!-- Menu Bar Extra Support -->
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	
+	<!-- Copyright and Credits -->
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2024 ForceQUIT. Created using SWARM 2.0 AI Development Framework.</string>
+	
+	<!-- App Transport Security -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+		<key>NSExceptionDomains</key>
+		<dict/>
+	</dict>
+	
+	<!-- Document Types (if needed) -->
+	<key>CFBundleDocumentTypes</key>
+	<array/>
+	
+	<!-- URL Schemes -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>ForceQUIT URL Handler</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>forcequit</string>
+			</array>
+		</dict>
+	</array>
+	
+	<!-- App Icon -->
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	
+	<!-- Main Interface -->
+	<key>NSMainStoryboardFile</key>
+	<string></string>
+	
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	
+	<!-- SwiftUI App -->
+	<key>UILaunchStoryboardName</key>
+	<string></string>
+	
+	<key>UISupportedInterfaceOrientations</key>
+	<array/>
+</dict>
+</plist>

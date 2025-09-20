@@ -1,0 +1,22 @@
+{
+  "": {
+    "dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/ForceQUIT.d",
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/ForceQUIT.o",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/master.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/Sources/ForceQUIT/SimpleMain.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/SimpleMain.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/SimpleMain~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/SimpleMain.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/Sources/ForceQUIT/main.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/main.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/main.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/DerivedSources/resource_bundle_accessor.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/resource_bundle_accessor.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/resource_bundle_accessor~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUIT.build/resource_bundle_accessor.swiftdeps"
+  }
+}

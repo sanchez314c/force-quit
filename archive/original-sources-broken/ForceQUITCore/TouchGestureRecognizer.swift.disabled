@@ -1,0 +1,723 @@
+//
+//  TouchGestureRecognizer.swift
+//  ForceQUIT - Multi-Modal Activation System
+//
+//  Created by SWARM 2.0 AI Development Framework
+//  Advanced trackpad gesture recognition system
+//
+
+import Foundation
+import AppKit
+import Combine
+
+/// Advanced trackpad gesture recognition system
+/// Provides multi-touch gesture detection with pattern matching
+@MainActor
+public final class TouchGestureRecognizer: ObservableObject {
+    
+    // MARK: - Published Properties
+    @Published public private(set) var isMonitoring = false
+    @Published public private(set) var currentGestures: Set<GestureType> = []
+    @Published public private(set) var gestureProgress: Double = 0.0
+    @Published public private(set) var lastDetectedGesture: DetectedGesture?
+    
+    // MARK: - Gesture Types
+    public enum GestureType: String, CaseIterable {
+        case threeFingerSwipeUp = "three_finger_swipe_up"
+        case threeFingerSwipeDown = "three_finger_swipe_down"
+        case threeFingerSwipeLeft = "three_finger_swipe_left"
+        case threeFingerSwipeRight = "three_finger_swipe_right"
+        case fourFingerSwipeUp = "four_finger_swipe_up"
+        case fourFingerSwipeDown = "four_finger_swipe_down"
+        case fourFingerSwipeLeft = "four_finger_swipe_left"
+        case fourFingerSwipeRight = "four_finger_swipe_right"
+        case fiveFingerPinch = "five_finger_pinch"
+        case twoFingerRotate = "two_finger_rotate"
+        case threeFingerTap = "three_finger_tap"
+        case fourFingerTap = "four_finger_tap"
+        case forceTouch = "force_touch"
+        case cornerSwipe = "corner_swipe"
+        
+        public var description: String {
+            switch self {
+            case .threeFingerSwipeUp:
+                return "Three finger swipe up"
+            case .threeFingerSwipeDown:
+                return "Three finger swipe down"
+            case .threeFingerSwipeLeft:
+                return "Three finger swipe left"
+            case .threeFingerSwipeRight:
+                return "Three finger swipe right"
+            case .fourFingerSwipeUp:
+                return "Four finger swipe up"
+            case .fourFingerSwipeDown:
+                return "Four finger swipe down"
+            case .fourFingerSwipeLeft:
+                return "Four finger swipe left"
+            case .fourFingerSwipeRight:
+                return "Four finger swipe right"
+            case .fiveFingerPinch:
+                return "Five finger pinch"
+            case .twoFingerRotate:
+                return "Two finger rotation"
+            case .threeFingerTap:
+                return "Three finger tap"
+            case .fourFingerTap:
+                return "Four finger tap"
+            case .forceTouch:
+                return "Force touch"
+            case .cornerSwipe:
+                return "Corner swipe"
+            }
+        }
+        
+        public var systemAction: SystemAction {
+            switch self {
+            case .threeFingerSwipeUp, .fourFingerSwipeUp:
+                return .showInterface
+            case .threeFingerSwipeDown, .fourFingerSwipeDown:
+                return .hideInterface
+            case .fiveFingerPinch:
+                return .forceQuitAll
+            case .threeFingerTap:
+                return .toggleInterface
+            case .fourFingerTap:
+                return .showSettings
+            case .forceTouch:
+                return .forceQuitCurrent
+            case .cornerSwipe:
+                return .showHelp
+            default:
+                return .custom("Navigation")
+            }
+        }
+    }
+    
+    // MARK: - System Actions
+    public enum SystemAction: Hashable {
+        case showInterface
+        case hideInterface
+        case toggleInterface
+        case showSettings
+        case showHelp
+        case forceQuitAll
+        case forceQuitCurrent
+        case quitAllGracefully
+        case custom(String)
+        
+        public var description: String {
+            switch self {
+            case .showInterface:
+                return "Show ForceQUIT interface"
+            case .hideInterface:
+                return "Hide ForceQUIT interface"
+            case .toggleInterface:
+                return "Toggle ForceQUIT interface"
+            case .showSettings:
+                return "Show settings"
+            case .showHelp:
+                return "Show help"
+            case .forceQuitAll:
+                return "Force quit all applications"
+            case .forceQuitCurrent:
+                return "Force quit current application"
+            case .quitAllGracefully:
+                return "Quit all applications gracefully"
+            case .custom(let name):
+                return "Custom action: \(name)"
+            }
+        }
+    }
+    
+    // MARK: - Detected Gesture
+    public struct DetectedGesture {
+        public let type: GestureType
+        public let timestamp: Date
+        public let location: CGPoint
+        public let velocity: CGPoint
+        public let fingerCount: Int
+        public let pressure: Float
+        public let confidence: Double
+        public let duration: TimeInterval
+        
+        public init(
+            type: GestureType,
+            timestamp: Date = Date(),
+            location: CGPoint,
+            velocity: CGPoint = .zero,
+            fingerCount: Int,
+            pressure: Float = 0.0,
+            confidence: Double = 1.0,
+            duration: TimeInterval = 0.0
+        ) {
+            self.type = type
+            self.timestamp = timestamp
+            self.location = location
+            self.velocity = velocity
+            self.fingerCount = fingerCount
+            self.pressure = pressure
+            self.confidence = confidence
+            self.duration = duration
+        }
+    }
+    
+    // MARK: - Configuration
+    public struct Configuration {
+        public var enabledGestures: Set<GestureType> = Set(GestureType.allCases)
+        public var minimumVelocity: CGFloat = 500.0
+        public var minimumDistance: CGFloat = 50.0
+        public var maximumDuration: TimeInterval = 2.0
+        public var confidenceThreshold: Double = 0.7
+        public var debounceInterval: TimeInterval = 0.3
+        public var enablePressureDetection: Bool = true
+        public var enableCornerGestures: Bool = true
+        public var cornerActivationRadius: CGFloat = 100.0
+        
+        public init(
+            enabledGestures: Set<GestureType> = Set(GestureType.allCases),
+            minimumVelocity: CGFloat = 500.0,
+            minimumDistance: CGFloat = 50.0,
+            maximumDuration: TimeInterval = 2.0,
+            confidenceThreshold: Double = 0.7,
+            debounceInterval: TimeInterval = 0.3,
+            enablePressureDetection: Bool = true,
+            enableCornerGestures: Bool = true,
+            cornerActivationRadius: CGFloat = 100.0
+        ) {
+            self.enabledGestures = enabledGestures
+            self.minimumVelocity = minimumVelocity
+            self.minimumDistance = minimumDistance
+            self.maximumDuration = maximumDuration
+            self.confidenceThreshold = confidenceThreshold
+            self.debounceInterval = debounceInterval
+            self.enablePressureDetection = enablePressureDetection
+            self.enableCornerGestures = enableCornerGestures
+            self.cornerActivationRadius = cornerActivationRadius
+        }
+    }
+    
+    // MARK: - Private Properties
+    private var configuration: Configuration
+    private var eventMonitor: Any?
+    private var gestureBuffer: [GestureEvent] = []
+    private var activeGesture: ActiveGesture?
+    private var lastGestureTime: Date?
+    private var cancellables = Set<AnyCancellable>()
+    
+    // MARK: - Gesture Event Structure
+    private struct GestureEvent {
+        let timestamp: Date
+        let type: NSEvent.EventType
+        let location: CGPoint
+        let deltaX: CGFloat
+        let deltaY: CGFloat
+        let pressure: Float
+        let stage: Int
+        let fingerCount: Int
+        
+        init(from event: NSEvent) {
+            self.timestamp = Date()
+            self.type = event.type
+            self.location = event.locationInWindow
+            self.deltaX = event.deltaX
+            self.deltaY = event.deltaY
+            self.pressure = event.pressure
+            self.stage = event.stage
+            
+            // Estimate finger count based on event type and properties
+            switch event.type {
+            case .swipe:
+                self.fingerCount = 3 // Default for swipe gestures
+            case .magnify, .rotate:
+                self.fingerCount = 2
+            case .pressure:
+                self.fingerCount = 1
+            default:
+                // Try to detect finger count from touch events
+                if #available(macOS 10.12.2, *) {
+                    if let touches = event.allTouches() {
+                        self.fingerCount = touches.count
+                    } else {
+                        self.fingerCount = 1
+                    }
+                } else {
+                    self.fingerCount = 1
+                }
+            }
+        }
+    }
+    
+    // MARK: - Active Gesture Structure
+    private struct ActiveGesture {
+        let startTime: Date
+        let startLocation: CGPoint
+        var currentLocation: CGPoint
+        var totalDistance: CGFloat
+        var events: [GestureEvent]
+        
+        init(startEvent: GestureEvent) {
+            self.startTime = startEvent.timestamp
+            self.startLocation = startEvent.location
+            self.currentLocation = startEvent.location
+            self.totalDistance = 0
+            self.events = [startEvent]
+        }
+        
+        mutating func addEvent(_ event: GestureEvent) {
+            let distance = sqrt(pow(event.location.x - currentLocation.x, 2) + pow(event.location.y - currentLocation.y, 2))
+            totalDistance += distance
+            currentLocation = event.location
+            events.append(event)
+        }
+        
+        var duration: TimeInterval {
+            return events.last?.timestamp.timeIntervalSince(startTime) ?? 0
+        }
+        
+        var velocity: CGPoint {
+            guard events.count > 1, duration > 0 else { return .zero }
+            
+            let totalDeltaX = currentLocation.x - startLocation.x
+            let totalDeltaY = currentLocation.y - startLocation.y
+            
+            return CGPoint(
+                x: totalDeltaX / duration,
+                y: totalDeltaY / duration
+            )
+        }
+        
+        var averagePressure: Float {
+            guard !events.isEmpty else { return 0 }
+            return events.map(\.pressure).reduce(0, +) / Float(events.count)
+        }
+    }
+    
+    // MARK: - Publishers
+    public let gestureDetectedPublisher = PassthroughSubject<DetectedGesture, Never>()
+    public let gestureProgressPublisher = PassthroughSubject<GestureProgress, Never>()
+    
+    public struct GestureProgress {
+        public let type: GestureType?
+        public let progress: Double
+        public let location: CGPoint
+    }
+    
+    // MARK: - Initialization
+    public init(configuration: Configuration = Configuration()) {
+        self.configuration = configuration
+    }
+    
+    deinit {
+        stopMonitoring()
+    }
+    
+    // MARK: - Public Methods
+    
+    /// Start monitoring trackpad gestures
+    public func startMonitoring() {
+        guard !isMonitoring else { return }
+        
+        setupEventMonitor()
+        isMonitoring = true
+        
+        print("👋 TouchGestureRecognizer: Started monitoring")
+    }
+    
+    /// Stop monitoring trackpad gestures
+    public func stopMonitoring() {
+        guard isMonitoring else { return }
+        
+        if let monitor = eventMonitor {
+            NSEvent.removeMonitor(monitor)
+            eventMonitor = nil
+        }
+        
+        // Clear state
+        gestureBuffer.removeAll()
+        activeGesture = nil
+        currentGestures.removeAll()
+        gestureProgress = 0.0
+        lastDetectedGesture = nil
+        isMonitoring = false
+        
+        print("🔴 TouchGestureRecognizer: Stopped monitoring")
+    }
+    
+    /// Update configuration settings
+    public func updateConfiguration(_ newConfiguration: Configuration) {
+        let wasMonitoring = isMonitoring
+        if wasMonitoring {
+            stopMonitoring()
+        }
+        
+        configuration = newConfiguration
+        
+        if wasMonitoring {
+            startMonitoring()
+        }
+        
+        print("⚙️ TouchGestureRecognizer: Configuration updated")
+    }
+    
+    /// Test gesture recognition manually
+    public func testGesture(_ gesture: GestureType, at location: CGPoint = .zero) {
+        let detectedGesture = DetectedGesture(
+            type: gesture,
+            location: location,
+            fingerCount: getExpectedFingerCount(for: gesture),
+            confidence: 1.0
+        )
+        
+        handleGestureDetection(detectedGesture)
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupEventMonitor() {
+        // Monitor for various gesture events
+        let eventMask: NSEvent.EventTypeMask = [
+            .swipe,
+            .magnify,
+            .rotate,
+            .pressure,
+            .directTouch,
+            .gesture
+        ]
+        
+        eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: eventMask) { [weak self] event in
+            DispatchQueue.main.async {
+                self?.processEvent(event)
+            }
+        }
+    }
+    
+    private func processEvent(_ event: NSEvent) {
+        let gestureEvent = GestureEvent(from: event)
+        
+        // Add to buffer
+        gestureBuffer.append(gestureEvent)
+        
+        // Clean old events
+        cleanGestureBuffer()
+        
+        // Process based on event type
+        switch event.type {
+        case .swipe:
+            processSwipeEvent(event, gestureEvent: gestureEvent)
+        case .magnify:
+            processMagnifyEvent(event, gestureEvent: gestureEvent)
+        case .rotate:
+            processRotateEvent(event, gestureEvent: gestureEvent)
+        case .pressure:
+            processPressureEvent(event, gestureEvent: gestureEvent)
+        case .directTouch, .gesture:
+            processDirectTouchEvent(event, gestureEvent: gestureEvent)
+        default:
+            break
+        }
+        
+        // Update gesture progress
+        updateGestureProgress()
+    }
+    
+    private func processSwipeEvent(_ event: NSEvent, gestureEvent: GestureEvent) {
+        guard configuration.enabledGestures.intersection([.threeFingerSwipeUp, .threeFingerSwipeDown, .threeFingerSwipeLeft, .threeFingerSwipeRight, .fourFingerSwipeUp, .fourFingerSwipeDown, .fourFingerSwipeLeft, .fourFingerSwipeRight]).isEmpty == false else { return }
+        
+        let deltaX = event.deltaX
+        let deltaY = event.deltaY
+        let magnitude = sqrt(deltaX * deltaX + deltaY * deltaY)
+        
+        guard magnitude > configuration.minimumDistance else { return }
+        
+        // Determine direction and finger count
+        let gestureType: GestureType
+        
+        // Estimate finger count (simplified)
+        let fingerCount = gestureEvent.fingerCount >= 4 ? 4 : 3
+        
+        if abs(deltaX) > abs(deltaY) {
+            // Horizontal swipe
+            if deltaX > 0 {
+                gestureType = fingerCount == 4 ? .fourFingerSwipeRight : .threeFingerSwipeRight
+            } else {
+                gestureType = fingerCount == 4 ? .fourFingerSwipeLeft : .threeFingerSwipeLeft
+            }
+        } else {
+            // Vertical swipe
+            if deltaY > 0 {
+                gestureType = fingerCount == 4 ? .fourFingerSwipeUp : .threeFingerSwipeUp
+            } else {
+                gestureType = fingerCount == 4 ? .fourFingerSwipeDown : .threeFingerSwipeDown
+            }
+        }
+        
+        // Check if gesture is enabled
+        guard configuration.enabledGestures.contains(gestureType) else { return }
+        
+        // Create detected gesture
+        let velocity = CGPoint(x: deltaX / 0.1, y: deltaY / 0.1) // Approximate velocity
+        let detectedGesture = DetectedGesture(
+            type: gestureType,
+            location: gestureEvent.location,
+            velocity: velocity,
+            fingerCount: fingerCount,
+            confidence: min(magnitude / (configuration.minimumDistance * 2), 1.0)
+        )
+        
+        handleGestureDetection(detectedGesture)
+    }
+    
+    private func processMagnifyEvent(_ event: NSEvent, gestureEvent: GestureEvent) {
+        guard configuration.enabledGestures.contains(.fiveFingerPinch) else { return }
+        
+        let magnification = event.magnification
+        
+        // Detect pinch (negative magnification)
+        if magnification < -0.5 {
+            let detectedGesture = DetectedGesture(
+                type: .fiveFingerPinch,
+                location: gestureEvent.location,
+                fingerCount: 5,
+                confidence: min(abs(magnification), 1.0)
+            )
+            
+            handleGestureDetection(detectedGesture)
+        }
+    }
+    
+    private func processRotateEvent(_ event: NSEvent, gestureEvent: GestureEvent) {
+        guard configuration.enabledGestures.contains(.twoFingerRotate) else { return }
+        
+        let rotation = event.rotation
+        
+        // Detect significant rotation
+        if abs(rotation) > 15 { // 15 degrees threshold
+            let detectedGesture = DetectedGesture(
+                type: .twoFingerRotate,
+                location: gestureEvent.location,
+                fingerCount: 2,
+                confidence: min(abs(rotation) / 45, 1.0) // Normalize to 45 degrees
+            )
+            
+            handleGestureDetection(detectedGesture)
+        }
+    }
+    
+    private func processPressureEvent(_ event: NSEvent, gestureEvent: GestureEvent) {
+        guard configuration.enablePressureDetection,
+              configuration.enabledGestures.contains(.forceTouch) else { return }
+        
+        let pressure = event.pressure
+        let stage = event.stage
+        
+        // Detect force touch (stage 2 or high pressure)
+        if stage >= 2 || pressure > 0.8 {
+            let detectedGesture = DetectedGesture(
+                type: .forceTouch,
+                location: gestureEvent.location,
+                fingerCount: 1,
+                pressure: pressure,
+                confidence: Double(pressure)
+            )
+            
+            handleGestureDetection(detectedGesture)
+        }
+    }
+    
+    private func processDirectTouchEvent(_ event: NSEvent, gestureEvent: GestureEvent) {
+        // Handle direct touch events for tap detection
+        if let touches = event.allTouches() {
+            let touchCount = touches.count
+            
+            // Detect multi-finger taps
+            if touchCount == 3 && configuration.enabledGestures.contains(.threeFingerTap) {
+                let detectedGesture = DetectedGesture(
+                    type: .threeFingerTap,
+                    location: gestureEvent.location,
+                    fingerCount: 3,
+                    confidence: 1.0
+                )
+                
+                handleGestureDetection(detectedGesture)
+            } else if touchCount == 4 && configuration.enabledGestures.contains(.fourFingerTap) {
+                let detectedGesture = DetectedGesture(
+                    type: .fourFingerTap,
+                    location: gestureEvent.location,
+                    fingerCount: 4,
+                    confidence: 1.0
+                )
+                
+                handleGestureDetection(detectedGesture)
+            }
+        }
+        
+        // Check for corner gestures
+        if configuration.enableCornerGestures,
+           configuration.enabledGestures.contains(.cornerSwipe) {
+            checkCornerGesture(gestureEvent)
+        }
+    }
+    
+    private func checkCornerGesture(_ gestureEvent: GestureEvent) {
+        guard let screen = NSScreen.main else { return }
+        
+        let screenFrame = screen.frame
+        let location = gestureEvent.location
+        let radius = configuration.cornerActivationRadius
+        
+        // Check if location is near any corner
+        let nearCorner = (
+            // Top-left
+            (location.x < radius && location.y > screenFrame.height - radius) ||
+            // Top-right
+            (location.x > screenFrame.width - radius && location.y > screenFrame.height - radius) ||
+            // Bottom-left
+            (location.x < radius && location.y < radius) ||
+            // Bottom-right
+            (location.x > screenFrame.width - radius && location.y < radius)
+        )
+        
+        if nearCorner {
+            let detectedGesture = DetectedGesture(
+                type: .cornerSwipe,
+                location: location,
+                fingerCount: 1,
+                confidence: 0.8
+            )
+            
+            handleGestureDetection(detectedGesture)
+        }
+    }
+    
+    private func handleGestureDetection(_ gesture: DetectedGesture) {
+        // Check debounce interval
+        if let lastTime = lastGestureTime,
+           Date().timeIntervalSince(lastTime) < configuration.debounceInterval {
+            return
+        }
+        
+        // Check confidence threshold
+        guard gesture.confidence >= configuration.confidenceThreshold else { return }
+        
+        lastGestureTime = Date()
+        lastDetectedGesture = gesture
+        currentGestures.insert(gesture.type)
+        
+        // Publish gesture
+        gestureDetectedPublisher.send(gesture)
+        
+        // Log detection
+        print("👋 TouchGestureRecognizer: Detected \(gesture.type.description) (confidence: \(String(format: "%.2f", gesture.confidence)))")
+        
+        // Remove from current gestures after delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.currentGestures.remove(gesture.type)
+        }
+    }
+    
+    private func updateGestureProgress() {
+        // Update gesture progress based on active gesture
+        if let active = activeGesture {
+            gestureProgress = min(active.totalDistance / configuration.minimumDistance, 1.0)
+            
+            gestureProgressPublisher.send(GestureProgress(
+                type: detectGestureType(from: active),
+                progress: gestureProgress,
+                location: active.currentLocation
+            ))
+        } else {
+            gestureProgress = 0.0
+        }
+    }
+    
+    private func detectGestureType(from activeGesture: ActiveGesture) -> GestureType? {
+        // Analyze active gesture to predict type
+        let velocity = activeGesture.velocity
+        let distance = activeGesture.totalDistance
+        
+        guard distance > configuration.minimumDistance * 0.5 else { return nil }
+        
+        // Simple direction detection
+        if abs(velocity.x) > abs(velocity.y) {
+            return velocity.x > 0 ? .threeFingerSwipeRight : .threeFingerSwipeLeft
+        } else {
+            return velocity.y > 0 ? .threeFingerSwipeUp : .threeFingerSwipeDown
+        }
+    }
+    
+    private func cleanGestureBuffer() {
+        let cutoffTime = Date().timeIntervalSince1970 - configuration.maximumDuration
+        gestureBuffer.removeAll { event in
+            event.timestamp.timeIntervalSince1970 < cutoffTime
+        }
+    }
+    
+    private func getExpectedFingerCount(for gesture: GestureType) -> Int {
+        switch gesture {
+        case .threeFingerSwipeUp, .threeFingerSwipeDown, .threeFingerSwipeLeft, .threeFingerSwipeRight, .threeFingerTap:
+            return 3
+        case .fourFingerSwipeUp, .fourFingerSwipeDown, .fourFingerSwipeLeft, .fourFingerSwipeRight, .fourFingerTap:
+            return 4
+        case .fiveFingerPinch:
+            return 5
+        case .twoFingerRotate:
+            return 2
+        case .forceTouch, .cornerSwipe:
+            return 1
+        }
+    }
+}
+
+// MARK: - TouchGestureRecognizer Extensions
+
+extension TouchGestureRecognizer {
+    
+    /// Convenience method to handle specific gesture types
+    public func onGesture(_ gestureType: GestureType, handler: @escaping (DetectedGesture) -> Void) {
+        gestureDetectedPublisher
+            .filter { $0.type == gestureType }
+            .sink { gesture in
+                handler(gesture)
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// Convenience method to handle any gesture
+    public func onAnyGesture(_ handler: @escaping (DetectedGesture) -> Void) {
+        gestureDetectedPublisher
+            .sink { gesture in
+                handler(gesture)
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// Convenience method to handle system actions
+    public func onSystemAction(_ action: SystemAction, handler: @escaping (DetectedGesture) -> Void) {
+        gestureDetectedPublisher
+            .filter { $0.type.systemAction == action }
+            .sink { gesture in
+                handler(gesture)
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// Get current gesture recognizer status
+    public var status: String {
+        if isMonitoring {
+            if currentGestures.isEmpty {
+                return "👋 Monitoring..."
+            } else {
+                return "🎯 Active gestures: \(currentGestures.count)"
+            }
+        } else {
+            return "💤 Inactive"
+        }
+    }
+    
+    /// Get gesture statistics
+    public var statistics: String {
+        let enabled = configuration.enabledGestures.count
+        let total = GestureType.allCases.count
+        return "Gestures: \(enabled)/\(total) enabled"
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/master.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/Sources/main.swift": {
+    "dependencies": "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main.d",
+    "object": "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main.swiftdeps"
+  }
+}

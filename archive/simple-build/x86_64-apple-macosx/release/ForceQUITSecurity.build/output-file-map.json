@@ -1,0 +1,42 @@
+{
+  "": {
+    "dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/ForceQUITSecurity.d",
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/ForceQUITSecurity.o",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/master.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/Sources/ForceQUITSecurity/AuthorizationManager.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/AuthorizationManager.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/AuthorizationManager~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/AuthorizationManager.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/Sources/ForceQUITSecurity/EntitlementManager.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/EntitlementManager.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/EntitlementManager~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/EntitlementManager.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/Sources/ForceQUITSecurity/PrivilegedHelper.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/PrivilegedHelper.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/PrivilegedHelper~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/PrivilegedHelper.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/Sources/ForceQUITSecurity/SandboxManager.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SandboxManager.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SandboxManager~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SandboxManager.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/Sources/ForceQUITSecurity/SecurityFramework.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SecurityFramework.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SecurityFramework~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SecurityFramework.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/Sources/ForceQUITSecurity/SecurityManager.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SecurityManager.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SecurityManager~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SecurityManager.swiftdeps"
+  },
+  "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/Sources/ForceQUITSecurity/SecurityValidator.swift": {
+    "object": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SecurityValidator.swift.o",
+    "swiftmodule": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SecurityValidator~partial.swiftmodule",
+    "swift-dependencies": "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITSecurity.build/SecurityValidator.swiftdeps"
+  }
+}

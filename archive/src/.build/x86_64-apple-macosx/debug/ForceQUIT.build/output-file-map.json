@@ -1,0 +1,59 @@
+{
+  "": {
+    "swift-dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/master.swiftdeps"
+  },
+  "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/AnimationController.swift": {
+    "dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimationController.d",
+    "object": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimationController.swift.o",
+    "swiftmodule": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimationController~partial.swiftmodule",
+    "swift-dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimationController.swiftdeps"
+  },
+  "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Core/SafeRestartEngine.swift": {
+    "dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SafeRestartEngine.d",
+    "object": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SafeRestartEngine.swift.o",
+    "swiftmodule": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SafeRestartEngine~partial.swiftmodule",
+    "swift-dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SafeRestartEngine.swiftdeps"
+  },
+  "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/ForceQUITUI.swift": {
+    "dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ForceQUITUI.d",
+    "object": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ForceQUITUI.swift.o",
+    "swiftmodule": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ForceQUITUI~partial.swiftmodule",
+    "swift-dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ForceQUITUI.swiftdeps"
+  },
+  "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/HealthRingsGrid.swift": {
+    "dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/HealthRingsGrid.d",
+    "object": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/HealthRingsGrid.swift.o",
+    "swiftmodule": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/HealthRingsGrid~partial.swiftmodule",
+    "swift-dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/HealthRingsGrid.swiftdeps"
+  },
+  "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Models/ProcessInfo.swift": {
+    "dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ProcessInfo.d",
+    "object": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ProcessInfo.swift.o",
+    "swiftmodule": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ProcessInfo~partial.swiftmodule",
+    "swift-dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/ProcessInfo.swiftdeps"
+  },
+  "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/PerformanceOptimizer.swift": {
+    "dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/PerformanceOptimizer.d",
+    "object": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/PerformanceOptimizer.swift.o",
+    "swiftmodule": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/PerformanceOptimizer~partial.swiftmodule",
+    "swift-dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/PerformanceOptimizer.swiftdeps"
+  },
+  "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/SystemStateManager.swift": {
+    "dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SystemStateManager.d",
+    "object": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SystemStateManager.swift.o",
+    "swiftmodule": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SystemStateManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/SystemStateManager.swiftdeps"
+  },
+  "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/Views/AnimatedTransitions.swift": {
+    "dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimatedTransitions.d",
+    "object": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimatedTransitions.swift.o",
+    "swiftmodule": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimatedTransitions~partial.swiftmodule",
+    "swift-dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/AnimatedTransitions.swiftdeps"
+  },
+  "/Users/heathen-admin/Desktop/02-ForceQUIT/src/Sources/main_complex.swift": {
+    "dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main_complex.d",
+    "object": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main_complex.swift.o",
+    "swiftmodule": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main_complex~partial.swiftmodule",
+    "swift-dependencies": "/Users/heathen-admin/Desktop/02-ForceQUIT/src/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main_complex.swiftdeps"
+  }
+}

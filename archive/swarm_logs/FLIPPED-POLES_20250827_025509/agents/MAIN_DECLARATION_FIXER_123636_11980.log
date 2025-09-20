@@ -1,0 +1,14 @@
+AGENT_ID: MAIN_DECLARATION_FIXER_123636_11980
+AGENT_NAME: MAIN_DECLARATION_FIXER
+PERSONALITY: CODEFIX SWARM - EMERGENCY COMPILATION REPAIR. Fix multiple @main declaration errors in ForceQUIT project. Analyze main.swift and main_complex.swift conflicts, resolve duplicate ForceQUITApp struct declarations, ensure single entry point. Critical: Remove conflicting @main attributes while preserving application functionality. MAXIMUM PRIORITY.
+STATUS: STARTING
+START_TIME: 2025-08-27_12:36:36
+PID: 11980
+MISSION: ForceQUIT CodeFIX Implementation
+TASK: Expert Swift compiler error specialist focusing on @main attribute conflicts and entry point resolution.
+STATUS: RUNNING
+PID: 11995
+RUN_TIME: 2025-08-27_12:36:36
+STATUS: COMPLETED
+END_TIME: 2025-08-27_12:40:02
+EXIT_CODE: 0

@@ -1,0 +1,503 @@
+//
+//  VoiceCommandHandler.swift
+//  ForceQUIT - Multi-Modal Activation System
+//
+//  Created by SWARM 2.0 AI Development Framework
+//  Advanced voice command recognition using Speech framework
+//
+
+import Foundation
+import Speech
+import AVFoundation
+import Combine
+
+/// Advanced voice command recognition system using Speech framework
+/// Provides real-time speech recognition with command pattern matching
+@MainActor
+public final class VoiceCommandHandler: ObservableObject {
+    
+    // MARK: - Published Properties
+    @Published public private(set) var isListening = false
+    @Published public private(set) var recognizedText = ""
+    @Published public private(set) var confidence: Float = 0.0
+    @Published public private(set) var authorizationStatus: SFSpeechRecognizerAuthorizationStatus = .notDetermined
+    @Published public private(set) var isConfigured = false
+    
+    // MARK: - Voice Commands
+    public enum VoiceCommand: String, CaseIterable {
+        case forceQuit = "force quit"
+        case forceQuitAll = "force quit all"
+        case quitAll = "quit all"
+        case closeAll = "close all"
+        case killAll = "kill all"
+        case shutdown = "shutdown"
+        case restart = "restart"
+        case cancel = "cancel"
+        case stop = "stop"
+        case help = "help"
+        
+        public var aliases: [String] {
+            switch self {
+            case .forceQuit:
+                return ["force quit", "force close", "kill app"]
+            case .forceQuitAll:
+                return ["force quit all", "force quit everything", "kill everything"]
+            case .quitAll:
+                return ["quit all", "quit everything", "close everything"]
+            case .closeAll:
+                return ["close all", "close everything"]
+            case .killAll:
+                return ["kill all", "kill everything"]
+            case .shutdown:
+                return ["shutdown", "shut down", "power off"]
+            case .restart:
+                return ["restart", "reboot"]
+            case .cancel:
+                return ["cancel", "abort", "nevermind"]
+            case .stop:
+                return ["stop", "halt", "pause"]
+            case .help:
+                return ["help", "what can you do", "commands"]
+            }
+        }
+        
+        public var description: String {
+            switch self {
+            case .forceQuit:
+                return "Force quit the currently selected application"
+            case .forceQuitAll:
+                return "Force quit all running applications"
+            case .quitAll:
+                return "Gracefully quit all running applications"
+            case .closeAll:
+                return "Close all application windows"
+            case .killAll:
+                return "Terminate all running processes"
+            case .shutdown:
+                return "Shutdown the system"
+            case .restart:
+                return "Restart the system"
+            case .cancel:
+                return "Cancel the current operation"
+            case .stop:
+                return "Stop voice recognition"
+            case .help:
+                return "Show available voice commands"
+            }
+        }
+    }
+    
+    // MARK: - Configuration
+    public struct Configuration {
+        public var locale: Locale = Locale(identifier: "en-US")
+        public var confidenceThreshold: Float = 0.5
+        public var listeningTimeout: TimeInterval = 30.0
+        public var commandTimeout: TimeInterval = 5.0
+        public var continuousRecognition: Bool = true
+        public var enableOnDeviceRecognition: Bool = true
+        public var wakeWords: [String] = ["force quit", "hey force quit"]
+        
+        public init(
+            locale: Locale = Locale(identifier: "en-US"),
+            confidenceThreshold: Float = 0.5,
+            listeningTimeout: TimeInterval = 30.0,
+            commandTimeout: TimeInterval = 5.0,
+            continuousRecognition: Bool = true,
+            enableOnDeviceRecognition: Bool = true,
+            wakeWords: [String] = ["force quit", "hey force quit"]
+        ) {
+            self.locale = locale
+            self.confidenceThreshold = confidenceThreshold
+            self.listeningTimeout = listeningTimeout
+            self.commandTimeout = commandTimeout
+            self.continuousRecognition = continuousRecognition
+            self.enableOnDeviceRecognition = enableOnDeviceRecognition
+            self.wakeWords = wakeWords
+        }
+    }
+    
+    // MARK: - Private Properties
+    private var speechRecognizer: SFSpeechRecognizer?
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var recognitionTask: SFSpeechRecognitionTask?
+    private let audioEngine = AVAudioEngine()
+    private var configuration: Configuration
+    private var cancellables = Set<AnyCancellable>()
+    private var commandBuffer: [RecognizedCommand] = []
+    private var lastCommandTime: Date?
+    
+    // MARK: - Command Structure
+    private struct RecognizedCommand {
+        let command: VoiceCommand
+        let confidence: Float
+        let timestamp: Date
+        let originalText: String
+    }
+    
+    // MARK: - Publishers
+    public let commandRecognizedPublisher = PassthroughSubject<VoiceCommandResult, Never>()
+    public let listeningStatePublisher = PassthroughSubject<ListeningState, Never>()
+    
+    public struct VoiceCommandResult {
+        public let command: VoiceCommand
+        public let confidence: Float
+        public let timestamp: Date
+        public let originalText: String
+    }
+    
+    public enum ListeningState {
+        case idle
+        case listening
+        case processing
+        case recognized(VoiceCommand)
+        case error(Error)
+    }
+    
+    // MARK: - Initialization
+    public init(configuration: Configuration = Configuration()) {
+        self.configuration = configuration
+        setupSpeechRecognizer()
+    }
+    
+    deinit {
+        stopListening()
+    }
+    
+    // MARK: - Public Methods
+    
+    /// Request speech recognition authorization
+    public func requestAuthorization() async -> Bool {
+        return await withCheckedContinuation { continuation in
+            SFSpeechRecognizer.requestAuthorization { [weak self] status in
+                DispatchQueue.main.async {
+                    self?.authorizationStatus = status
+                    continuation.resume(returning: status == .authorized)
+                }
+            }
+        }
+    }
+    
+    /// Start voice command recognition
+    public func startListening() async throws {
+        guard !isListening else { return }
+        
+        // Check authorization
+        guard authorizationStatus == .authorized else {
+            let authorized = await requestAuthorization()
+            if !authorized {
+                throw VoiceCommandError.notAuthorized
+            }
+        }
+        
+        // Setup audio session
+        try setupAudioSession()
+        
+        // Start recognition
+        try startSpeechRecognition()
+        
+        isListening = true
+        listeningStatePublisher.send(.listening)
+        
+        print("🎤 VoiceCommandHandler: Started listening")
+    }
+    
+    /// Stop voice command recognition
+    public func stopListening() {
+        guard isListening else { return }
+        
+        // Stop audio engine
+        audioEngine.stop()
+        audioEngine.inputNode.removeTap(onBus: 0)
+        
+        // Cancel recognition
+        recognitionRequest?.endAudio()
+        recognitionTask?.cancel()
+        recognitionRequest = nil
+        recognitionTask = nil
+        
+        isListening = false
+        recognizedText = ""
+        confidence = 0.0
+        
+        listeningStatePublisher.send(.idle)
+        
+        print("🔴 VoiceCommandHandler: Stopped listening")
+    }
+    
+    /// Update configuration settings
+    public func updateConfiguration(_ newConfiguration: Configuration) {
+        let wasListening = isListening
+        if wasListening {
+            stopListening()
+        }
+        
+        configuration = newConfiguration
+        setupSpeechRecognizer()
+        
+        if wasListening {
+            Task {
+                try? await startListening()
+            }
+        }
+        
+        print("⚙️ VoiceCommandHandler: Configuration updated")
+    }
+    
+    /// Get available voice commands
+    public func getAvailableCommands() -> [VoiceCommand] {
+        return VoiceCommand.allCases
+    }
+    
+    /// Test command recognition with text
+    public func testCommandRecognition(_ text: String) -> VoiceCommand? {
+        return recognizeCommand(from: text)
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupSpeechRecognizer() {
+        speechRecognizer = SFSpeechRecognizer(locale: configuration.locale)
+        speechRecognizer?.delegate = self
+        
+        isConfigured = speechRecognizer?.isAvailable == true
+        
+        if !isConfigured {
+            print("⚠️ VoiceCommandHandler: Speech recognizer not available for locale \(configuration.locale)")
+        }
+    }
+    
+    private func setupAudioSession() throws {
+        let audioSession = AVAudioSession.sharedInstance()
+        try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+        try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+    }
+    
+    private func startSpeechRecognition() throws {
+        // Cancel any existing recognition task
+        recognitionTask?.cancel()
+        recognitionTask = nil
+        
+        // Create recognition request
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        guard let recognitionRequest = recognitionRequest else {
+            throw VoiceCommandError.recognitionRequestFailed
+        }
+        
+        // Configure request
+        recognitionRequest.shouldReportPartialResults = true
+        if configuration.enableOnDeviceRecognition,
+           speechRecognizer?.supportsOnDeviceRecognition == true {
+            recognitionRequest.requiresOnDeviceRecognition = true
+        }
+        
+        // Setup audio input
+        let inputNode = audioEngine.inputNode
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
+            recognitionRequest.append(buffer)
+        }
+        
+        // Start audio engine
+        audioEngine.prepare()
+        try audioEngine.start()
+        
+        // Start recognition task
+        recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest) { [weak self] result, error in
+            DispatchQueue.main.async {
+                self?.handleRecognitionResult(result, error: error)
+            }
+        }
+    }
+    
+    private func handleRecognitionResult(_ result: SFSpeechRecognitionResult?, error: Error?) {
+        if let error = error {
+            print("❌ VoiceCommandHandler: Recognition error: \(error)")
+            listeningStatePublisher.send(.error(error))
+            return
+        }
+        
+        guard let result = result else { return }
+        
+        let transcription = result.bestTranscription
+        recognizedText = transcription.formattedString
+        confidence = transcription.averageConfidence
+        
+        // Process command if confidence is above threshold
+        if confidence >= configuration.confidenceThreshold {
+            processRecognizedText(transcription.formattedString, confidence: confidence)
+        }
+        
+        // Handle final result
+        if result.isFinal {
+            if configuration.continuousRecognition {
+                // Restart recognition for continuous listening
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                    self?.restartRecognition()
+                }
+            } else {
+                stopListening()
+            }
+        }
+    }
+    
+    private func processRecognizedText(_ text: String, confidence: Float) {
+        // Check for wake words first
+        if shouldProcessCommand(text) {
+            if let command = recognizeCommand(from: text) {
+                handleCommandRecognition(command, originalText: text, confidence: confidence)
+            }
+        }
+    }
+    
+    private func shouldProcessCommand(_ text: String) -> Bool {
+        let lowercasedText = text.lowercased()
+        
+        // Check if any wake word is present
+        return configuration.wakeWords.isEmpty || 
+               configuration.wakeWords.contains { wakeWord in
+                   lowercasedText.contains(wakeWord.lowercased())
+               }
+    }
+    
+    private func recognizeCommand(from text: String) -> VoiceCommand? {
+        let lowercasedText = text.lowercased()
+        
+        // Find best matching command
+        for command in VoiceCommand.allCases {
+            for alias in command.aliases {
+                if lowercasedText.contains(alias.lowercased()) {
+                    return command
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    private func handleCommandRecognition(_ command: VoiceCommand, originalText: String, confidence: Float) {
+        let recognizedCommand = RecognizedCommand(
+            command: command,
+            confidence: confidence,
+            timestamp: Date(),
+            originalText: originalText
+        )
+        
+        // Add to command buffer
+        commandBuffer.append(recognizedCommand)
+        lastCommandTime = Date()
+        
+        // Create result
+        let result = VoiceCommandResult(
+            command: command,
+            confidence: confidence,
+            timestamp: recognizedCommand.timestamp,
+            originalText: originalText
+        )
+        
+        // Publish command
+        commandRecognizedPublisher.send(result)
+        listeningStatePublisher.send(.recognized(command))
+        
+        // Log recognition
+        print("🎯 VoiceCommandHandler: Recognized '\(command.rawValue)' (confidence: \(String(format: "%.2f", confidence)))")
+        
+        // Clean old commands from buffer
+        cleanCommandBuffer()
+    }
+    
+    private func cleanCommandBuffer() {
+        let cutoffTime = Date().timeIntervalSince1970 - (configuration.commandTimeout * 2)
+        commandBuffer.removeAll { command in
+            command.timestamp.timeIntervalSince1970 < cutoffTime
+        }
+    }
+    
+    private func restartRecognition() {
+        guard isListening else { return }
+        
+        do {
+            try startSpeechRecognition()
+        } catch {
+            print("❌ VoiceCommandHandler: Failed to restart recognition: \(error)")
+            stopListening()
+        }
+    }
+}
+
+// MARK: - SFSpeechRecognizerDelegate
+
+extension VoiceCommandHandler: SFSpeechRecognizerDelegate {
+    public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            self?.isConfigured = available
+            if !available && self?.isListening == true {
+                self?.stopListening()
+            }
+        }
+    }
+}
+
+// MARK: - Voice Command Error
+
+public enum VoiceCommandError: LocalizedError {
+    case notAuthorized
+    case recognitionRequestFailed
+    case audioEngineError
+    case recognizerNotAvailable
+    
+    public var errorDescription: String? {
+        switch self {
+        case .notAuthorized:
+            return "Speech recognition not authorized"
+        case .recognitionRequestFailed:
+            return "Failed to create recognition request"
+        case .audioEngineError:
+            return "Audio engine error"
+        case .recognizerNotAvailable:
+            return "Speech recognizer not available"
+        }
+    }
+}
+
+// MARK: - VoiceCommandHandler Extensions
+
+extension VoiceCommandHandler {
+    
+    /// Convenience method to handle specific commands
+    public func onCommand(_ command: VoiceCommand, handler: @escaping (VoiceCommandResult) -> Void) {
+        commandRecognizedPublisher
+            .filter { $0.command == command }
+            .sink { result in
+                handler(result)
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// Convenience method to handle any command
+    public func onAnyCommand(_ handler: @escaping (VoiceCommandResult) -> Void) {
+        commandRecognizedPublisher
+            .sink { result in
+                handler(result)
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// Get current voice handler status
+    public var status: String {
+        switch authorizationStatus {
+        case .notDetermined:
+            return "🔍 Authorization needed"
+        case .denied, .restricted:
+            return "🚫 Not authorized"
+        case .authorized:
+            if isListening {
+                return confidence > 0 ? "🎤 Listening... (\(String(format: "%.0f", confidence * 100))%)" : "🎤 Listening..."
+            } else {
+                return "⏹️ Ready"
+            }
+        @unknown default:
+            return "❓ Unknown status"
+        }
+    }
+}

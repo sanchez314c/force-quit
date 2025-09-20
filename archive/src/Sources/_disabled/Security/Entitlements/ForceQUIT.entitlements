@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- App Sandbox Entitlement -->
+    <key>com.apple.security.app-sandbox</key>
+    <true/>
+    
+    <!-- Apple Events Entitlement (for process interaction) -->
+    <key>com.apple.security.automation.apple-events</key>
+    <true/>
+    
+    <!-- Disable JIT for security -->
+    <key>com.apple.security.cs.allow-jit</key>
+    <false/>
+    
+    <!-- Disable library validation for signed code only -->
+    <key>com.apple.security.cs.disable-library-validation</key>
+    <false/>
+    
+    <!-- Hardened Runtime -->
+    <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+    <false/>
+    
+    <key>com.apple.security.cs.allow-dyld-environment-variables</key>
+    <false/>
+    
+    <!-- XPC Service Communication -->
+    <key>com.apple.security.temporary-exception.mach-lookup.global-name</key>
+    <array>
+        <string>com.apple.coreservices.appleevents</string>
+        <string>com.apple.system.opendirectoryd.membership</string>
+    </array>
+    
+    <!-- Helper Tool Installation -->
+    <key>com.apple.security.temporary-exception.shared-preference.read-write</key>
+    <array>
+        <string>com.apple.security.authorization</string>
+    </array>
+    
+    <!-- Network Client (for update checks, if needed) -->
+    <key>com.apple.security.network.client</key>
+    <true/>
+    
+    <!-- User Selected Files (for potential config/log export) -->
+    <key>com.apple.security.files.user-selected.read-write</key>
+    <true/>
+    
+    <!-- Outgoing Network Connections -->
+    <key>com.apple.security.network.outgoing</key>
+    <true/>
+</dict>
+</plist>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- App Sandbox with minimal required permissions -->
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+	
+	<!-- Hardened Runtime for enhanced security -->
+	<key>com.apple.security.cs.allow-jit</key>
+	<false/>
+	<key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+	<false/>
+	<key>com.apple.security.cs.allow-dyld-environment-variables</key>
+	<false/>
+	<key>com.apple.security.cs.disable-library-validation</key>
+	<false/>
+	
+	<!-- Required for process monitoring and termination -->
+	<key>com.apple.security.temporary-exception.apple-events</key>
+	<array>
+		<string>com.apple.systemevents</string>
+		<string>com.apple.finder</string>
+	</array>
+	
+	<!-- Required for accessing running applications -->
+	<key>com.apple.security.temporary-exception.shared-preference.read-only</key>
+	<array>
+		<string>com.apple.LaunchServices</string>
+	</array>
+	
+	<!-- User selected file access for exports -->
+	<key>com.apple.security.files.user-selected.read-write</key>
+	<true/>
+	
+	<!-- Network client for updates (optional) -->
+	<key>com.apple.security.network.client</key>
+	<true/>
+	
+	<!-- Required for menu bar access -->
+	<key>com.apple.security.temporary-exception.mach-lookup.global-name</key>
+	<array>
+		<string>com.apple.coreservices.launchservicesd</string>
+		<string>com.apple.dock.server</string>
+	</array>
+	
+	<!-- Application groups for helper tool communication -->
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>com.forceQUIT.shared</string>
+	</array>
+	
+	<!-- Disable dangerous features -->
+	<key>com.apple.security.cs.disable-executable-page-protection</key>
+	<false/>
+	<key>com.apple.security.get-task-allow</key>
+	<false/>
+</dict>
+</plist>

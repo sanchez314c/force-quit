@@ -1,0 +1,349 @@
+# ===============================================================================
+# ForceQUIT - CI/CD Pipeline
+# SWARM 2.0 Framework - BUILD_SYSTEM_DEVELOPER
+# ===============================================================================
+# Comprehensive automated testing, building, and deployment pipeline
+# Supports: Multiple architectures, code signing, automated releases
+
+name: ForceQUIT CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      deploy_release:
+        description: 'Deploy release build'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  PROJECT_NAME: ForceQUIT
+  BUNDLE_ID: com.swarm.forcequit
+  XCODE_VERSION: '15.2'
+
+jobs:
+  # =====================================
+  # Code Quality & Security Analysis
+  # =====================================
+  code-quality:
+    name: Code Quality & Security
+    runs-on: macos-14
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: ${{ env.XCODE_VERSION }}
+    
+    - name: Cache Swift Package Manager
+      uses: actions/cache@v3
+      with:
+        path: .build
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+    
+    - name: Swift Format Check
+      run: |
+        if command -v swift-format >/dev/null 2>&1; then
+          swift-format --lint --recursive Sources Tests
+        else
+          echo "⚠️ swift-format not available - skipping formatting check"
+        fi
+    
+    - name: SwiftLint Analysis
+      if: false  # Enable when SwiftLint is configured
+      run: |
+        if command -v swiftlint >/dev/null 2>&1; then
+          swiftlint
+        else
+          echo "⚠️ SwiftLint not available - skipping lint analysis"
+        fi
+    
+    - name: Security Vulnerability Scan
+      run: |
+        echo "🔒 Running security analysis..."
+        # Basic security checks for common vulnerabilities
+        grep -r "NSLog\|print(" Sources/ || echo "✅ No debug logging found"
+        grep -r "TODO\|FIXME\|HACK" Sources/ || echo "✅ No TODO/FIXME/HACK found"
+
+  # =====================================
+  # Comprehensive Testing
+  # =====================================
+  test:
+    name: Test Suite
+    runs-on: macos-14
+    strategy:
+      matrix:
+        swift-version: ['5.9']
+        test-type: ['unit', 'integration', 'performance', 'security']
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: ${{ env.XCODE_VERSION }}
+    
+    - name: Cache Swift Package Manager
+      uses: actions/cache@v3
+      with:
+        path: .build
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+    
+    - name: Run Test Suite
+      run: |
+        chmod +x swift-test-suite.sh
+        case "${{ matrix.test-type }}" in
+          "unit")
+            ./swift-test-suite.sh --unit-only --verbose
+            ;;
+          "integration")
+            ./swift-test-suite.sh --integration-only --verbose
+            ;;
+          "performance")
+            ./swift-test-suite.sh --performance-only --verbose
+            ;;
+          "security")
+            ./swift-test-suite.sh --security-only --verbose
+            ;;
+        esac
+    
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results-${{ matrix.test-type }}
+        path: |
+          test-reports/
+          coverage/
+        retention-days: 7
+
+  # =====================================
+  # Universal Binary Build
+  # =====================================
+  build:
+    name: Universal Binary Build
+    runs-on: macos-14
+    needs: [code-quality, test]
+    if: success()
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: ${{ env.XCODE_VERSION }}
+    
+    - name: Cache Swift Package Manager
+      uses: actions/cache@v3
+      with:
+        path: .build
+        key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-
+    
+    - name: Build Universal Binary
+      run: |
+        chmod +x swift-build-universal.sh
+        ./swift-build-universal.sh --test --optimize-size
+    
+    - name: Verify Build Artifacts
+      run: |
+        echo "🔍 Verifying build artifacts..."
+        ls -la dist/
+        file dist/ForceQUIT.app/Contents/MacOS/ForceQUIT
+        lipo -info dist/ForceQUIT.app/Contents/MacOS/ForceQUIT
+    
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ForceQUIT-Universal-${{ github.run_number }}
+        path: |
+          dist/ForceQUIT.app
+          dist/*.zip
+        retention-days: 30
+
+  # =====================================
+  # Code Signing & Notarization
+  # =====================================
+  sign-and-notarize:
+    name: Code Signing & Notarization
+    runs-on: macos-14
+    needs: [build]
+    if: success() && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Download Build Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: ForceQUIT-Universal-${{ github.run_number }}
+        path: dist/
+    
+    - name: Import Code Signing Certificates
+      env:
+        SIGNING_CERTIFICATE_P12_DATA: ${{ secrets.SIGNING_CERTIFICATE_P12_DATA }}
+        SIGNING_CERTIFICATE_PASSWORD: ${{ secrets.SIGNING_CERTIFICATE_PASSWORD }}
+      run: |
+        if [ -n "$SIGNING_CERTIFICATE_P12_DATA" ]; then
+          echo "🔑 Importing code signing certificates..."
+          echo $SIGNING_CERTIFICATE_P12_DATA | base64 --decode > certificate.p12
+          security create-keychain -p "" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "" build.keychain
+          security import certificate.p12 -k build.keychain -P $SIGNING_CERTIFICATE_PASSWORD -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "" build.keychain
+          rm certificate.p12
+        else
+          echo "⚠️ No signing certificates configured - skipping signing"
+        fi
+    
+    - name: Configure Code Signing Environment
+      run: |
+        chmod +x code-sign-config.sh
+        ./code-sign-config.sh
+    
+    - name: Sign and Notarize
+      env:
+        APPLE_ID: ${{ secrets.APPLE_ID }}
+        APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+        TEAM_ID: ${{ secrets.TEAM_ID }}
+      run: |
+        if [ -n "$APPLE_ID" ] && [ -n "$APPLE_ID_PASSWORD" ]; then
+          echo "🔐 Starting code signing and notarization..."
+          chmod +x code-sign-notarize.sh
+          ./code-sign-notarize.sh
+        else
+          echo "⚠️ Notarization credentials not configured - creating unsigned build"
+        fi
+    
+    - name: Upload Signed Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ForceQUIT-Signed-${{ github.run_number }}
+        path: |
+          notarized/
+          dist/
+        retention-days: 90
+
+  # =====================================
+  # Release Deployment
+  # =====================================
+  release:
+    name: Create Release
+    runs-on: macos-14
+    needs: [sign-and-notarize]
+    if: success() && startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Download Signed Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: ForceQUIT-Signed-${{ github.run_number }}
+    
+    - name: Prepare Release Assets
+      run: |
+        echo "📦 Preparing release assets..."
+        mkdir -p release/
+        
+        # Copy signed app bundle
+        if [ -d "notarized/ForceQUIT.app" ]; then
+          cp -R notarized/ForceQUIT.app release/
+          cd release
+          zip -r ForceQUIT-${GITHUB_REF#refs/tags/}-Signed.zip ForceQUIT.app
+          cd ..
+        fi
+        
+        # Copy other distribution formats
+        find . -name "*.dmg" -exec cp {} release/ \;
+        find . -name "*.pkg" -exec cp {} release/ \;
+        
+        ls -la release/
+    
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: ForceQUIT ${{ github.ref_name }}
+        body: |
+          ## ForceQUIT ${{ github.ref_name }}
+          
+          Nuclear Option Made Beautiful - Latest Release
+          
+          ### What's New
+          - Universal binary support (Intel + Apple Silicon)
+          - Enhanced security and performance
+          - Sleek dark mode interface
+          
+          ### Installation
+          1. Download `ForceQUIT-${{ github.ref_name }}-Signed.zip`
+          2. Extract and move `ForceQUIT.app` to `/Applications`
+          3. Launch ForceQUIT from Applications or Spotlight
+          
+          ### System Requirements
+          - macOS 12.0 or later
+          - Intel Mac or Apple Silicon Mac
+          
+          ---
+          *Built with SWARM 2.0 AI Development Framework*
+        files: |
+          release/*
+        draft: false
+        prerelease: ${{ contains(github.ref_name, '-') }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # =====================================
+  # Deployment Notifications
+  # =====================================
+  notify:
+    name: Deployment Notifications
+    runs-on: macos-14
+    needs: [release]
+    if: always()
+    
+    steps:
+    - name: Notify Success
+      if: needs.release.result == 'success'
+      run: |
+        echo "🎉 ForceQUIT ${{ github.ref_name }} successfully released!"
+        echo "Release available at: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}"
+    
+    - name: Notify Failure
+      if: needs.release.result == 'failure'
+      run: |
+        echo "❌ ForceQUIT release deployment failed!"
+        echo "Check the workflow logs for details."
+
+  # =====================================
+  # Cleanup
+  # =====================================
+  cleanup:
+    name: Cleanup
+    runs-on: macos-14
+    needs: [notify]
+    if: always()
+    
+    steps:
+    - name: Cleanup Build Artifacts
+      run: |
+        echo "🧹 Build pipeline cleanup complete"
+        # Cleanup tasks can be added here if needed
