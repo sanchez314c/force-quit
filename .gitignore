@@ -99,8 +99,18 @@ config/local.*
 
 # Session files
 *.session
-*.swarm_sessionnode_modules/
+*.swarm_session
+
+# Node modules
+node_modules/
+
+# Python virtual environments
 venv/
+ENV/
+env/
+__pycache__/
+
+# Archive
 archive/
 dist/
 build/
