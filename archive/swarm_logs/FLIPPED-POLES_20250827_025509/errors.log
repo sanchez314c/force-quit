@@ -1,7 +1,0 @@
-ERROR_AGENT|2025-08-27_12:56:01|ENUM_MEMBER_FIXER_125135_21516|ENUM_MEMBER_FIXER
-PERSONALITY: SECOND CODEFIX SWARM - ENUM MEMBER REPAIR. Fix 'cannot infer contextual base in reference to member .passed' errors in SecurityAuditReport.swift. Add explicit enum type annotations where needed. Analyze all enum member references and ensure proper context. ENUM INFERENCE CRITICAL.
-TASK: Expert Swift enum specialist focusing on enum member references, contextual base inference, and enum pattern matching.
-ERRORS:
-(node:21534) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 51 abort listeners added to [AbortSignal]. MaxListeners is 50. Use events.setMaxListeners() to increase limit
-(Use `node --trace-warnings ...` to show where the warning was created)
----

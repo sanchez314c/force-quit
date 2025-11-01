@@ -1,46 +1,71 @@
 ---
-name: Bug report
+name: Bug Report
 about: Create a report to help us improve ForceQUIT
-title: '[BUG] '
+title: "[BUG]: "
 labels: bug
 assignees: ''
+
 ---
 
 ## 🐛 Bug Description
-**Clear and concise description of what the bug is.**
+A clear and concise description of what the bug is.
 
-## 🔄 Steps to Reproduce
+## 🔄 Reproduction Steps
+Detailed steps to reproduce the behavior:
+
 1. Go to '...'
-2. Click on '...'
-3. Perform action '...'
+2. Click on '....'
+3. Scroll down to '....'
 4. See error
 
 ## ✅ Expected Behavior
-**Clear description of what you expected to happen.**
+A clear and concise description of what you expected to happen.
 
 ## ❌ Actual Behavior
-**Clear description of what actually happened.**
+A clear and concise description of what actually happened.
 
-## 📱 Environment
-- **macOS Version**: [e.g., macOS 14.0 Sonoma]
-- **Hardware**: [e.g., MacBook Pro M2, iMac Intel]
-- **ForceQUIT Version**: [e.g., 2.0.0]
-- **Installation Method**: [App Store, DMG, Built from source]
+## 📱 Environment Information
+**Operating System**:
+- macOS version:
+- Architecture (Intel/Apple Silicon):
 
-## 📸 Screenshots
-**If applicable, add screenshots to help explain your problem.**
+**Application Version**:
+- ForceQUIT version:
+- Build type (Debug/Release):
 
-## 📋 Additional Context
-- **Console logs** (if applicable)
-- **Crash reports** (if applicable)  
-- **Other apps running** when issue occurred
-- **Any other context** about the problem
+**Installation Method**:
+- [ ] Built from source
+- [ ] Downloaded release
+- [ ] Other (specify):
+
+## 📋 System Information
+**Swift Version**:
+**Xcode Version**: (if applicable)
+**Memory**:
+**Storage**:
+
+## 📝 Additional Context
+Add any other context about the problem here.
+
+## 🖼️ Screenshots
+If applicable, add screenshots to help explain your problem.
+
+## 📊 Console Logs
+Please provide relevant console output or crash logs:
+
+```bash
+# Example: Get system logs
+log stream --predicate 'subsystem == "com.yourapp.forcequit"' --last 5m
+```
+
+## 🔍 Debug Information
+- [ ] I have searched existing issues for similar problems
+- [ ] I have checked the troubleshooting guide
+- [ ] I have provided all requested information
+- [ ] I have included relevant logs and screenshots
+
+## 💡 Possible Solution (Optional)
+If you have ideas on how to fix this, please describe them here.
 
 ## 🔒 Security & Privacy
 **For security-related bugs, please email directly instead of creating a public issue.**
-
-## ✅ Checklist
-- [ ] I have searched existing issues to ensure this is not a duplicate
-- [ ] I have provided all requested information above
-- [ ] I can reproduce this issue consistently
-- [ ] I have tested with the latest version of ForceQUIT

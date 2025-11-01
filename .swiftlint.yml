@@ -1,0 +1,177 @@
+# SwiftLint Configuration
+# Customized rules for ForceQUIT project
+
+disabled_rules:
+  # Disabled rules that don't fit our project style
+  - trailing_whitespace  # Handled by editor
+  - line_length  # We allow longer lines for readability
+  - function_body_length  # Complex functions may be longer
+  - file_length  # Some files may be longer due to documentation
+
+opt_in_rules:
+  # Opt-in rules for better code quality
+  - empty_count
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - missing_docs
+  - private_outlet
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - unneeded_parentheses_in_closure_arguments
+
+# Custom rules configuration
+force_cast:
+  severity: warning  # Allow force casts with warning
+
+force_try:
+  severity: warning  # Allow force try with warning
+
+force_unwrapping:
+  severity: warning  # Allow force unwrapping with warning
+
+implicitly_unwrapped_optional:
+  severity: warning  # Allow IUOs with warning
+
+# Function and variable naming
+identifier_name:
+  min_length:
+    warning: 3
+    error: 2
+  max_length:
+    warning: 40
+    error: 50
+  excluded:
+    - id  # Common identifier
+    - URL  # Common acronym
+    - app  # Common term
+    - ui  # Common acronym
+    - vc  # View Controller abbreviation
+    - vm  # View Model abbreviation
+
+# Type naming
+type_name:
+  min_length:
+    warning: 3
+    error: 2
+  max_length:
+    warning: 50
+    error: 60
+  allowed_symbols: ["_"]  # Allow underscores
+  excluded:
+    - Test  # Exclude test suffix
+    - Mock  # Exclude mock prefix
+
+# Line length limits
+line_length:
+  warning: 120
+  error: 150
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_interpolated_strings: true
+  ignores_urls: true
+
+# Function body length
+function_body_length:
+  warning: 100
+  error: 200
+
+# File length
+file_length:
+  warning: 500
+  error: 1000
+  ignore_comment_only_lines: true
+
+# Cyclomatic complexity
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+  ignores_case_statements: true
+
+# Nesting levels
+nesting:
+  function_nesting_level:
+    warning: 3
+    error: 5
+  type_nesting_level:
+    warning: 2
+    error: 4
+
+# Import organization
+imports:
+  # Group imports by framework, third-party, and local
+  sort: name
+  grouped: true
+
+# Documentation requirements
+missing_docs:
+  warning:  # Public declarations should have documentation
+    - public
+    - open
+
+# Custom rule exclusions by file
+excluded:
+  - Carthage
+  - Pods
+  - .build
+  - DerivedData
+  - .git
+  - Package.resolved
+
+# Custom rule configurations for specific patterns
+custom_rules:
+  # ForceQUIT specific rules
+  forcequit_naming_convention:
+    name: "ForceQUIT Naming Convention"
+    regex: "(class|struct|enum|protocol) (ForceQUIT|ForceQuit)"
+    message: "Use 'ForceQUIT' naming convention for types"
+    severity: warning
+
+  # Security rules
+  no_hardcoded_secrets:
+    name: "No Hardcoded Secrets"
+    regex: "(password|secret|key|token)\\s*=\\s*\"[^\"]+\""
+    message: "Avoid hardcoded secrets and sensitive information"
+    severity: error
+
+  # Performance rules
+  avoid_force_unwrapping_optionals:
+    name: "Avoid Force Unwrapping Optionals"
+    regex: "!"
+    message: "Consider using optional binding instead of force unwrapping"
+    severity: warning
+
+# Reporter configuration
+reporter: "xcode"  # Xcode-compatible output
+quiet: false
+
+# Path exclusion
+excluded:
+  - .build
+  - DerivedData
+  - .git
+  - Carthage
+  - Pods
+  - fastlane
+  - .swiftpm
+
+# Include test files
+include_test_files: true
+
+# Enable for Swift 5.9+ features
+analyzer_rules:
+  - unused_import
+  - unused_declaration
+  - redundant_discardable_let
+
+# Configuration for Swift 5.9
+swift_version: 5.9
+
+# Custom formatter configuration (if using swiftformat integration)
+formatter:
+  indent: 4
+  tab_width: 4
+  wrap_arguments: never
+  wrap_parameters: never
+  closing_brace_same_line: false
+  blank_line_after_private: true
+  blank_line_after_protocols: true

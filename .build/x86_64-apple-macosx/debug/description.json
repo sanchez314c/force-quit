@@ -1,6 +1,10 @@
 {
   "builtTestProducts" : [
-
+    {
+      "binaryPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.xctest/Contents/MacOS/ForceQUITPackageTests",
+      "packagePath" : "/Volumes/apfsRAID/Development/Github/force-quit",
+      "productName" : "ForceQUITPackageTests"
+    }
   ],
   "copyCommands" : {
 
@@ -19,47 +23,46 @@
   "swiftCommands" : {
     "C.ForceQUIT-x86_64-apple-macosx15.0-debug.module" : {
       "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
-      "fileList" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources",
-      "importPath" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/Modules",
+      "fileList" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources",
+      "importPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules",
       "inputs" : [
         {
           "kind" : "file",
-          "name" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/Sources/main.swift"
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/Sources/ForceQUIT/main.swift"
         },
         {
           "kind" : "file",
-          "name" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
         },
         {
           "kind" : "file",
-          "name" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources"
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources"
         }
       ],
       "isLibrary" : false,
       "moduleName" : "ForceQUIT",
-      "moduleOutputPath" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/Modules/ForceQUIT.swiftmodule",
+      "moduleOutputPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules/ForceQUIT.swiftmodule",
       "objects" : [
-        "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main.swift.o"
+        "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main.swift.o"
       ],
       "otherArguments" : [
         "-target",
         "x86_64-apple-macosx12.0",
         "-enable-batch-mode",
         "-index-store-path",
-        "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/index/store",
+        "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/index/store",
         "-Onone",
         "-enable-testing",
         "-j20",
         "-DSWIFT_PACKAGE",
         "-DDEBUG",
         "-module-cache-path",
-        "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ModuleCache",
+        "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ModuleCache",
         "-parseable-output",
         "-Xfrontend",
         "-entry-point-function-name",
         "-Xfrontend",
         "ForceQUIT_main",
-        "-parse-as-library",
         "-swift-version",
         "5",
         "-DSWIFTUI_FORCE_QUIT",
@@ -94,24 +97,199 @@
         "-Xcc",
         "-g",
         "-package-name",
-        "_2_forcequit"
+        "force_quit"
       ],
-      "outputFileMapPath" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/output-file-map.json",
+      "outputFileMapPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.build/output-file-map.json",
       "outputs" : [
         {
           "kind" : "file",
-          "name" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main.swift.o"
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main.swift.o"
         },
         {
           "kind" : "file",
-          "name" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/Modules/ForceQUIT.swiftmodule"
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules/ForceQUIT.swiftmodule"
         }
       ],
       "prepareForIndexing" : false,
       "sources" : [
-        "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/Sources/main.swift"
+        "/Volumes/apfsRAID/Development/Github/force-quit/Sources/ForceQUIT/main.swift"
       ],
-      "tempsPath" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build",
+      "tempsPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.ForceQUITPackageTests-x86_64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.build/sources",
+      "importPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules/ForceQUITTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ForceQUITPackageTests",
+      "moduleOutputPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules/ForceQUITPackageTests.swiftmodule",
+      "objects" : [
+        "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-apple-macosx12.0",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j20",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.build/ForceQUITPackageTests-Swift.h",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "force_quit"
+      ],
+      "outputFileMapPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules/ForceQUITPackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.ForceQUITTests-x86_64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITTests.build/sources",
+      "importPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/Tests/ForceQUITTests/ForceQUITTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ForceQUITTests",
+      "moduleOutputPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules/ForceQUITTests.swiftmodule",
+      "objects" : [
+        "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITTests.build/ForceQUITTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "x86_64-apple-macosx13.0",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j20",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-swift-version",
+        "5",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "force_quit"
+      ],
+      "outputFileMapPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITTests.build/ForceQUITTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules/ForceQUITTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Volumes/apfsRAID/Development/Github/force-quit/Tests/ForceQUITTests/ForceQUITTests.swift"
+      ],
+      "tempsPath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITTests.build",
       "wholeModuleOptimization" : false
     }
   },
@@ -124,30 +302,29 @@
       "-module-name",
       "ForceQUIT",
       "-package-name",
-      "_2_forcequit",
+      "force_quit",
       "-incremental",
       "-c",
-      "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/Sources/main.swift",
+      "/Volumes/apfsRAID/Development/Github/force-quit/Sources/ForceQUIT/main.swift",
       "-I",
-      "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/Modules",
+      "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules",
       "-target",
       "x86_64-apple-macosx12.0",
       "-enable-batch-mode",
       "-index-store-path",
-      "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/index/store",
+      "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/index/store",
       "-Onone",
       "-enable-testing",
       "-j20",
       "-DSWIFT_PACKAGE",
       "-DDEBUG",
       "-module-cache-path",
-      "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ModuleCache",
+      "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ModuleCache",
       "-parseable-output",
       "-Xfrontend",
       "-entry-point-function-name",
       "-Xfrontend",
       "ForceQUIT_main",
-      "-parse-as-library",
       "-swift-version",
       "5",
       "-DSWIFTUI_FORCE_QUIT",
@@ -182,7 +359,114 @@
       "-Xcc",
       "-g",
       "-package-name",
-      "_2_forcequit",
+      "force_quit",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "ForceQUITPackageTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ForceQUITPackageTests",
+      "-package-name",
+      "force_quit",
+      "-incremental",
+      "-c",
+      "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.derived/runner.swift",
+      "-I",
+      "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules",
+      "-target",
+      "x86_64-apple-macosx12.0",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j20",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.build/ForceQUITPackageTests-Swift.h",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "force_quit",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "ForceQUITTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ForceQUITTests",
+      "-package-name",
+      "force_quit",
+      "-incremental",
+      "-c",
+      "/Volumes/apfsRAID/Development/Github/force-quit/Tests/ForceQUITTests/ForceQUITTests.swift",
+      "-I",
+      "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/Modules",
+      "-target",
+      "x86_64-apple-macosx13.0",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j20",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-swift-version",
+      "5",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "force_quit",
       "-driver-use-frontend-path",
       "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
     ]
@@ -190,16 +474,33 @@
   "targetDependencyMap" : {
     "ForceQUIT" : [
 
+    ],
+    "ForceQUITPackageTests" : [
+      "ForceQUITTests",
+      "ForceQUIT"
+    ],
+    "ForceQUITTests" : [
+      "ForceQUIT"
     ]
   },
   "testDiscoveryCommands" : {
 
   },
   "testEntryPointCommands" : {
+    "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.derived/runner.swift" : {
+      "inputs" : [
 
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.derived/runner.swift"
+        }
+      ]
+    }
   },
   "writeCommands" : {
-    "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT-entitlement.plist" : {
+    "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT-entitlement.plist" : {
       "alwaysOutOfDate" : false,
       "inputs" : [
         {
@@ -211,9 +512,9 @@
           "name" : "<com.apple.security.get-task-allow>"
         }
       ],
-      "outputFilePath" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT-entitlement.plist"
+      "outputFilePath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT-entitlement.plist"
     },
-    "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources" : {
+    "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources" : {
       "alwaysOutOfDate" : false,
       "inputs" : [
         {
@@ -222,12 +523,12 @@
         },
         {
           "kind" : "file",
-          "name" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/Sources/main.swift"
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/Sources/ForceQUIT/main.swift"
         }
       ],
-      "outputFilePath" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources"
+      "outputFilePath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.build/sources"
     },
-    "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.product/Objects.LinkFileList" : {
+    "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.product/Objects.LinkFileList" : {
       "alwaysOutOfDate" : false,
       "inputs" : [
         {
@@ -236,12 +537,62 @@
         },
         {
           "kind" : "file",
-          "name" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main.swift.o"
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main.swift.o"
         }
       ],
-      "outputFilePath" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/ForceQUIT.product/Objects.LinkFileList"
+      "outputFilePath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.product/Objects.LinkFileList"
     },
-    "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+    "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.build/sources"
+    },
+    "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUIT.build/main.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITTests.build/ForceQUITTests.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITPackageTests.product/Objects.LinkFileList"
+    },
+    "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Volumes/apfsRAID/Development/Github/force-quit/Tests/ForceQUITTests/ForceQUITTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/ForceQUITTests.build/sources"
+    },
+    "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
       "alwaysOutOfDate" : true,
       "inputs" : [
         {
@@ -253,7 +604,7 @@
           "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
         }
       ],
-      "outputFilePath" : "/Volumes/apfsRAID/Development/Github/02-ForceQUIT/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+      "outputFilePath" : "/Volumes/apfsRAID/Development/Github/force-quit/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
     }
   }
 }

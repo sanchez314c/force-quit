@@ -23,11 +23,11 @@ let package = Package(
         .executableTarget(
             name: "ForceQUIT",
             dependencies: [],
-            path: "Sources",
+            path: "Sources/ForceQUIT",
             swiftSettings: [
                 .enableUpcomingFeature("BareSlashRegexLiterals"),
                 .enableUpcomingFeature("ConciseMagicFile"),
-                .enableUpcomingFeature("ForwardTrailingClosures"), 
+                .enableUpcomingFeature("ForwardTrailingClosures"),
                 .enableUpcomingFeature("ImportObjcForwardDeclarations"),
                 .define("SWIFTUI_FORCE_QUIT"),
                 .define("DARK_MODE_OPTIMIZED")
@@ -37,6 +37,12 @@ let package = Package(
                 .linkedFramework("SwiftUI"),
                 .linkedFramework("Foundation")
             ]
+        ),
+        // Test target
+        .testTarget(
+            name: "ForceQUITTests",
+            dependencies: ["ForceQUIT"],
+            path: "Tests/ForceQUITTests"
         )
     ],
     swiftLanguageVersions: [.v5]

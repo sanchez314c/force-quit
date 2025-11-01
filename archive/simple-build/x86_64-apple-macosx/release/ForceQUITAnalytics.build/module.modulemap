@@ -1,4 +1,0 @@
-module ForceQUITAnalytics {
-    header "/Volumes/apfsRAID/Development/Projects/01_High_Completion/02-ForceQUIT/simple-build/x86_64-apple-macosx/release/ForceQUITAnalytics.build/ForceQUITAnalytics-Swift.h"
-    requires objc
-}
