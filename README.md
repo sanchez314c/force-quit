@@ -1,219 +1,324 @@
-# ForceQUIT
+# ForceQUIT 🚪
 
-![Status](https://img.shields.io/badge/Status-Active-green)
-![Version](https://img.shields.io/badge/Version-1.0.0-blue)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-![Platform](https://img.shields.io/badge/Platform-macOS_12.0+-blue)
-![Swift](https://img.shields.io/badge/Swift-5.9+-orange)
+> Elegant macOS Force Quit Utility - Safe process termination with modern UI
 
-🚀 **Elegant macOS Force Quit Utility**
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 
-ForceQUIT is a sophisticated macOS application designed to provide users with an elegant force quit solution with safe restart capabilities and enhanced user experience.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Swift](https://img.shields.io/badge/Swift-5.9+-FA7343?logo=swift)](https://swift.org/)
+[![SwiftUI](https://img.shields.io/badge/SwiftUI-4.0+-346DA0?logo=swift)](https://developer.apple.com/xcode/swiftui/)
+[![Platform](https://img.shields.io/badge/Platform-macOS%2012.0%2B-lightgrey)](https://github.com/sanchez314c/force-quit/releases)
+
+## 📸 Main Interface
+
+![ForceQUIT Screenshot](build_resources/screenshots/ForceQUIT.png)
+
+> The Ultimate macOS Force Quit Utility - Safe Process Management with Style
+
+ForceQUIT is a sophisticated macOS application that provides an elegant force quit solution with safe restart capabilities. Built with Swift and SwiftUI, it offers a modern dark UI for managing applications, processes, and system services while maintaining security-first principles and System Integrity Protection (SIP) compliance.
 
 ## ✨ Features
 
-- **🎨 Elegant Interface**: Modern SwiftUI design with dark mode support
-- **🔄 Safe Operations**: Secure process management with proper permissions
-- **⚡ Quick Actions**: Fast application termination and restart capabilities
-- **🔒 Security First**: SIP-compliant with sandboxing
-- **📊 Performance Monitoring**: Built-in system health tracking
-- **🌙 Dark Mode**: Beautiful dark mode optimized interface
+- 🎨 **Elegant Interface** - Modern SwiftUI design with dark mode support
+- 🔒 **Security First** - SIP-compliant with sandboxing and proper permissions
+- ⚡ **Quick Actions** - Fast application termination and restart capabilities
+- 📊 **Process Monitoring** - Built-in system health tracking and resource monitoring
+- 🌙 **Dark Mode Optimized** - Beautiful interface optimized for extended use
+- 🔄 **Safe Restart** - Intelligent application restart with state preservation
+- 🛡️ **Protected Processes** - Automatically filters system-critical processes
+- 🚀 **Native Performance** - Built with native macOS frameworks for optimal speed
+- 🔍 **Process Search** - Quick search and filtering for large process lists
+- ⌨️ **Keyboard Navigation** - Full keyboard accessibility and shortcuts
 
-## 🚀 Quick Start
+## 📸 Screenshots
 
-### Prerequisites
-- macOS 12.0+ (Monterey)
-- Intel Mac or Apple Silicon
+<details>
+<summary>View Screenshots</summary>
 
-### Installation
+![Main Interface](build_resources/screenshots/main-interface.png)
+*Main interface showing running applications and processes*
+
+![Process Details](build_resources/screenshots/process-details.png)
+*Detailed process information and management options*
+
+![Dark Mode](build_resources/screenshots/dark-mode.png)
+*Beautiful dark mode optimized for extended use*
+
+</details>
+
+## 🚀 Quick Start - One-Command Build & Run
+
+### Option 1: One-Command Solution (Recommended)
+
+```bash
+# Clone and build
+git clone https://github.com/sanchez314c/force-quit.git
+cd force-quit
+
+# Build and run with a single command!
+./scripts/build-release-run.sh
+```
+
+### Option 2: Development Mode
+
+```bash
+# Run in development mode with hot reload
+./scripts/build-release-run.sh --dev
+```
+
+### Build Options
+
+```bash
+# Build only (don't launch)
+./scripts/build-release-run.sh --build-only
+
+# Clean build
+./scripts/build-release-run.sh --clean
+
+# Build for specific architecture
+./scripts/build-release-run.sh --arch universal
+./scripts/build-release-run.sh --arch intel
+./scripts/build-release-run.sh --arch apple-silicon
+```
+
+## 📋 Prerequisites
+
+For running from source:
+- **macOS** 12.0+ (Monterey) for SwiftUI 3.0+ and async/await support
+- **Xcode** 14.0+ or Swift 5.9+ command line tools
+- **Git** for version control
+
+The application will guide you through any required permissions.
+
+## 🛠️ Installation
+
+### Detailed Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/username/force-quit.git
+git clone https://github.com/sanchez314c/force-quit.git
 cd force-quit
 
-# Run setup script
-./setup.sh
+# Option 1: Use the setup script
+./scripts/setup.sh
+
+# Option 2: Manual installation
+swift package resolve
 
 # Build and run
-./scripts/build.sh && ./run-macos.sh
+./scripts/build-release-run.sh
 ```
 
-### Alternative Installation Methods
-
-**Download Release**:
-1. Visit [Releases](https://github.com/username/force-quit/releases)
-2. Download `ForceQUIT.dmg`
-3. Install to Applications folder
-
-**Homebrew**:
-```bash
-brew install --cask forcequit
-```
-
-## 📖 Documentation
-
-### User Documentation
-- **[Quick Start Guide](docs/QUICK_START.md)** - Get up and running in 5 minutes
-- **[Installation Guide](docs/INSTALLATION.md)** - Detailed installation instructions
-- **[User FAQ](docs/FAQ.md)** - Common questions and answers
-- **[Troubleshooting Guide](docs/TROUBLESHOOTING.md)** - Solutions to common issues
-
-### Developer Documentation
-- **[Development Guide](docs/DEVELOPMENT.md)** - Development setup and contribution
-- **[API Reference](docs/API.md)** - Complete API documentation
-- **[Build System](docs/BUILD_COMPILE.md)** - Build and compilation guide
-- **[Architecture](docs/ARCHITECTURE.md)** - System architecture and design
-
-### Project Documentation
-- **[Documentation Index](docs/DOCUMENTATION_INDEX.md)** - Complete documentation overview
-- **[Contributing Guide](docs/CONTRIBUTING.md)** - How to contribute
-- **[Security Policy](docs/SECURITY.md)** - Security information and policies
-- **[Code of Conduct](docs/CODE_OF_CONDUCT.md)** - Community guidelines
-
-### Planning & Roadmap
-- **[Product Requirements](docs/PRD.md)** - Product vision and requirements
-- **[Development Workflow](docs/WORKFLOW.md)** - Development processes and CI/CD
-- **[TODO & Roadmap](docs/TODO.md)** - Current development priorities
-
-For complete documentation, see the [docs/](docs/) directory.
-
-## 🏗️ Project Structure
-
-```
-ForceQUIT/
-├── Sources/ForceQUIT/         # Swift source code
-├── Tests/                     # Test suite
-├── docs/                      # Documentation
-├── scripts/                   # Build and deployment scripts
-├── assets/                    # Application assets
-├── .github/                   # GitHub templates and workflows
-└── Makefile                   # Build automation
-```
-
-## 🛠️ Development
-
-### Build from Source
+### Building from Source
 
 ```bash
-# Development build
-make build
+# One-command build for current platform
+./scripts/build-release-run.sh --build-only
+
+# Build universal binary (Intel + Apple Silicon)
+./scripts/build-release-run.sh --arch universal --build-only
+
+# Debug build
+swift build -c debug
 
 # Release build
-make build-release
-
-# Universal binary (Intel + Apple Silicon)
-make build-universal
-
-# Complete release package
-make build-release-complete
+swift build -c release
 ```
 
-### Testing
+### Build Output Locations
+
+After building, find your executables in:
+- **macOS**: `.build/release/ForceQUIT` and `dist/ForceQUIT.app`
+- **Universal**: `dist/ForceQUIT-universal.app`
+
+## 📖 Usage
+
+### 1. Starting the Application
+
+- **Pre-built Binary**: Double-click the ForceQUIT.app in Applications
+- **From Source**: Run `./run-source-macos.sh` or `swift run ForceQUIT`
+
+### 2. Managing Processes
+
+- **View Applications**: See all running applications with resource usage
+- **System Processes**: Filter to view system-level processes
+- **Search**: Use the search bar to find specific processes quickly
+
+### 3. Force Quit Operations
+
+- **Safe Force Quit**: Terminates applications gracefully when possible
+- **Force Termination**: Uses system-level termination for unresponsive apps
+- **Process Protection**: Automatically prevents termination of system-critical processes
+
+### 4. Application Restart
+
+- **Smart Restart**: Attempts to restart applications with state preservation
+- **Clean Restart**: Forces a clean restart of problematic applications
+- **Recovery Mode**: Special handling for crashed or corrupted applications
+
+### 5. Keyboard Shortcuts
+
+- **⌘+Q**: Quit selected application
+- **⌘+⌥+Q**: Force quit selected application
+- **⌘+R**: Restart selected application
+- **⌘+F**: Focus search field
+- **↑/↓**: Navigate process list
+- **Enter**: Show process details
+
+## 🔧 Configuration
+
+### Directory Structure
+
+```
+~/Library/Application Support/ForceQUIT/
+├── config.json          # Application configuration
+├── preferences.plist     # User preferences
+├── logs/                # Application logs
+└── temp/                # Temporary files
+```
+
+### Environment Variables
 
 ```bash
-# Run all tests
-make test
+# Set custom log level
+export FORCEQUIT_LOG_LEVEL=debug
 
-# Run tests with coverage
-make test-all
+# Enable debug mode
+export FORCEQUIT_DEBUG=1
 
-# Quality checks
-make quality-check
+# Disable animations
+export FORCEQUIT_NO_ANIMATIONS=1
 ```
 
-### Development Workflow
+### Security Settings
 
+ForceQUIT operates with these security principles:
+- **SIP Compliant**: Never terminates System Integrity Protection protected processes
+- **Sandbox Aware**: Respects macOS sandbox constraints
+- **Permission Minimal**: Requests only necessary macOS permissions
+- **Privacy First**: No data collection or network access
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+<details>
+<summary>Permission denied</summary>
+
+The app will prompt for necessary permissions automatically. If that fails:
 ```bash
-# Setup development environment
-make dev-setup
-
-# Quick development cycle (build, test, lint)
-make dev
-
-# Full quality assurance
-make qa
+# Reset permissions
+sudo tccutil reset All com.sanchez314c.forcequit
 ```
+</details>
 
-## 🔧 Build System
+<details>
+<summary>Process won't terminate</summary>
 
-ForceQUIT uses a comprehensive CLI-based build system with:
+1. Check if the process is system-protected
+2. Ensure you have sufficient permissions
+3. Try using "Force Termination" instead of "Force Quit"
+4. Check logs in `~/Library/Logs/ForceQUIT/`
+</details>
 
-- **Agent-Driven**: Pure CLI workflow for automated execution
-- **Universal Binaries**: Intel x64 + Apple Silicon ARM64
-- **Code Signing**: Professional distribution with signing
-- **Notarization**: Apple notarization for distribution
-- **Multiple Formats**: App bundle, DMG installer, and more
-- **CI/CD Ready**: Automated testing and deployment
+<details>
+<summary>App won't launch</summary>
 
-See [Build System Guide](docs/BUILD_COMPILE.md) for complete build documentation.
+1. Ensure macOS 12.0 or later
+2. Check security preferences in System Settings
+3. Verify app signature: `codesign -dv ForceQUIT.app`
+4. Try building from source
+</details>
 
-## 📊 Technology Stack
+<details>
+<summary>Build errors</summary>
 
-- **Language**: Swift 5.9+
-- **UI Framework**: SwiftUI
-- **System Integration**: AppKit, Foundation
-- **Build System**: Swift Package Manager
-- **Testing**: XCTest
-- **Platform**: macOS 12.0+
+1. Update Swift tools: `swift package update`
+2. Clean build: `swift package clean`
+3. Verify Xcode command line tools are installed
+</details>
 
-See [Technical Stack](docs/TECHSTACK.md) for detailed information.
+## 📁 Project Structure
 
-## 🔒 Security
-
-ForceQUIT is designed with security as a primary consideration:
-
-- **Sandbox Compliant**: Operates within macOS sandbox constraints
-- **Code Signed**: All releases are properly signed and notarized
-- **Permission Management**: Requests only necessary permissions
-- **No Data Collection**: All data remains on your device
-- **Secure Updates**: Automatic updates with security verification
-
-See [Security Policy](docs/SECURITY.md) for complete security information.
+```
+force-quit/
+├── Package.swift           # Swift Package Manager configuration
+├── Sources/
+│   └── ForceQUIT/         # Main application source
+│       ├── ForceQUITApp.swift    # App entry point
+│       ├── Views/               # SwiftUI views
+│       ├── Models/              # Data models
+│       ├── Services/            # Business logic
+│       └── Utils/               # Utility functions
+├── Tests/
+│   └── ForceQUITTests/         # Unit and integration tests
+├── build_resources/            # Build resources and assets
+│   ├── icons/                # Application icons
+│   └── screenshots/          # Application screenshots
+├── scripts/                   # Build and utility scripts
+│   ├── build-release-run.sh   # Main build script
+│   ├── setup.sh              # Environment setup
+│   └── temp-cleanup.sh       # Cleanup utilities
+├── docs/                     # Documentation
+├── archive/                  # Archived/backup files
+└── dist/                     # Build outputs (generated)
+```
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.md) for details.
+Contributions are welcome! Please feel free to submit pull requests or create issues for bug reports and feature requests.
 
-### Quick Contributing Steps
+### Development Setup
 
-1. Fork repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass (`make quality-check`)
-6. Submit a pull request
+```bash
+# Clone the repo
+git clone https://github.com/sanchez314c/force-quit.git
+cd force-quit
 
-## 📋 Requirements
+# Install dependencies
+swift package resolve
 
-- **macOS**: 12.0 (Monterey) or later
-- **Architecture**: Universal (Intel x64 + Apple Silicon ARM64)
-- **Development**: Xcode 14.0+ or Swift 5.9+
-- **Memory**: 4GB RAM minimum
-- **Storage**: 50MB free space
+# Run in development mode
+swift run ForceQUIT
+
+# Run tests
+swift test
+
+# Build for release
+swift build -c release
+
+# Code quality checks
+make lint
+make test
+```
+
+### Code Style
+
+This project follows:
+- **Swift Style Guide**: Official Swift style guidelines
+- **SwiftUI Best Practices**: Modern SwiftUI patterns
+- **Security First**: All code must pass security review
+- **Testing**: Minimum 80% code coverage required
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support & Community
+## 🙏 Acknowledgments
 
-- **Documentation**: [docs/](docs/) - Complete documentation suite
-- **Issues**: [GitHub Issues](https://github.com/username/force-quit/issues) - Bug reports and feature requests
-- **Discussions**: [GitHub Discussions](https://github.com/username/force-quit/discussions) - Community discussions
-- **Security**: security@forcequit.app - Security-related inquiries
+- **Apple** - For SwiftUI and the amazing macOS platform
+- **Swift Community** - For excellent tools and libraries
+- **System Integrity Protection** - For keeping macOS secure
+- **Open Source Contributors** - For making better software possible
 
-## 🎯 Build Status
+## 🔗 Links
 
-- ✅ **Swift Package Manager**: Full SPM integration
-- ✅ **Universal Binary**: Intel + Apple Silicon support
-- ✅ **Code Signing**: Production-ready distribution
-- ✅ **Testing**: Comprehensive test suite
-- ✅ **Documentation**: Complete documentation suite
-- ✅ **Security**: Security-focused development
+- [Report Issues](https://github.com/sanchez314c/force-quit/issues)
+- [Request Features](https://github.com/sanchez314c/force-quit/issues/new?labels=enhancement)
+- [Discussions](https://github.com/sanchez314c/force-quit/discussions)
+- [Security Policy](docs/SECURITY.md)
 
 ---
 
-**ForceQUIT** - Master force quit utility for macOS.
-
-Made with ❤️ for the macOS community.
+**ForceQUIT v1.0** - Elegant macOS Force Quit Utility
+Built with AI!
