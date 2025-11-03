@@ -11,7 +11,7 @@
 
 ## 📸 Main Interface
 
-![ForceQUIT Screenshot](build_resources/screenshots/ForceQUIT.png)
+![ForceQUIT Screenshot](build_resources/screenshots/force-quit-interface.jpg)
 
 > The Ultimate macOS Force Quit Utility - Safe Process Management with Style
 
@@ -35,14 +35,8 @@ ForceQUIT is a sophisticated macOS application that provides an elegant force qu
 <details>
 <summary>View Screenshots</summary>
 
-![Main Interface](build_resources/screenshots/main-interface.png)
-*Main interface showing running applications and processes*
-
-![Process Details](build_resources/screenshots/process-details.png)
-*Detailed process information and management options*
-
-![Dark Mode](build_resources/screenshots/dark-mode.png)
-*Beautiful dark mode optimized for extended use*
+![Main Interface](build_resources/screenshots/force-quit-interface.jpg)
+*Main interface showing running applications and process management*
 
 </details>
 
